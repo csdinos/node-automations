@@ -1,0 +1,12 @@
+{
+  "name": "node-automations",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/csdinos/node-automations.git",
+  "author": "<dinos.vlachantonis@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "shelljs": "^0.8.4"
+  }
+}
