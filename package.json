@@ -7,6 +7,8 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.4.0",
+    "minimist": "^1.2.5",
+    "readline-sync": "^1.4.10",
     "shelljs": "^0.8.4"
   }
 }
