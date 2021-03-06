@@ -9,15 +9,13 @@ const fetchTicket = async (ticketNumber) => {
   )
 
   if (!response.ok) {
-    throw new Error('Failed to get ticket information')
+    throw new Error(`Failed to fetch information for ticket: ${ticketNumber}`)
   }
 
   return await response.json()
 }
 
 const getOptions = () => {
-  console.log(process.env.JIRA_USER)
-  console.log(process.env.JIRA_API_TOKEN)
   const token = base64.encode(`${process.env.JIRA_USER}:${process.env.JIRA_API_TOKEN}`)
 
   return {

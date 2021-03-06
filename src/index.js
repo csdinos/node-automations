@@ -1,19 +1,29 @@
 require('dotenv').config()
-
-const {fetchTicket} = require('./fetch-ticket')
-const {createBranch} = require('./create-branch')
 require('colors')
 
-const getBranchName = (ticketData) => {
-  const ticketNumber = ticketData.key
-  const ticketSummary = ticketData.fields.summary.toLowerCase()
+const minimist = require('minimist');
+const {fetchTicket} = require('./fetch-ticket')
+const {createBranch} = require('./git/create-branch')
+const {getBranchName} = require('./git/utils')
+const {getNameInteractive} = require('./get-name-interactive')
 
-  return `${ticketNumber}-${ticketSummary}`.replace(/\s+/g, '-')
+const getTicketInput = () => {
+  const options = {
+    alias: {
+      h: 'help',
+      t: 'ticket'
+    }
+  }
+  const argv = minimist(process.argv.slice(2), options)
+
+  return argv.ticket || getNameInteractive()
 }
 
 const start = async () => {
-  const ticketData = await fetchTicket('AUT-1')
+  const ticketNumber = getTicketInput()
+  const ticketData = await fetchTicket(ticketNumber)
   const branchName = getBranchName(ticketData)
+
   createBranch(branchName)
 }
 

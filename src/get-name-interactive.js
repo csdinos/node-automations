@@ -1,9 +1,9 @@
 const readlineSync = require('readline-sync');
 
 const getNameInteractive = () => {
-  return readlineSync.question('What is the branch name? ', {
+  return readlineSync.question('What is the ticket number? ', {
     limit: (input) => input.length > 0,
-    limitMessage: 'Branch name cannot be empty'
+    limitMessage: 'Please provide a none empty value'
   })
 }
 
